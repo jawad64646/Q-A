@@ -1,6 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'data.dart';
-
+import 'main.dart';
 class hO extends StatefulWidget {
   const hO({super.key});
 
@@ -10,12 +12,14 @@ class hO extends StatefulWidget {
 
 class _hOState extends State<hO> {
   int? text;
-  int index = 0;
-  String answer="";
 
+
+  String answer="";
+final Random rand=new Random();
   String correction="";
   List<String> keysList = questions.keys.toList();
   List<String> valuesList = questions.values.toList();
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     Color correctionColor;
@@ -102,10 +106,8 @@ class _hOState extends State<hO> {
                     onPressed:  () {
                       if (correction == "Correct") {
                         if (index < keysList.length - 1) {
-                          index++;
+                          index = rand.nextInt(keysList.length);
                           correction="";
-                        } else {
-                          correction = "End of Quiz!";
                         }
                       } else {
                         correction = "TRY AGAIN";
